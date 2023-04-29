@@ -1,0 +1,85 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+  Checkout | ShopKart
+{% endblock %}
+{% block content %}
+  <section class="bg-light py-4 my-5" style="min-height:600px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-3">Checkout Page</h4>
+          <hr style="border-color:#b8bfc2;" />
+        </div>
+        <form class="row g-3" autocomplete="off" method="POST"  onsubmit="return mufun()" action="{% url 'placeorder' %}">
+          {% csrf_token %}
+            <div class="col-md-6">
+                <label for="inputname" class="form-label">Full Name</label>
+                <input type="text" name="fullname"  class="form-control" id="inputname" placeholder="Enter Full Name" required/>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Enter your Email" required/>
+            </div>
+            
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" name="address" class="form-control" id="inputAddress" placeholder="1234 Main St" required />
+            </div>
+            
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">City</label>
+                <input type="text" name="city" class="form-control" id="inputCity" required />
+            </div>
+            
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">State</label>
+                <input type="text" name="state" class="form-control" id="inputCity" placeholder="Enter your State" required />    
+            </div>
+            
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Pincode</label>
+                <input type="text" name="pincode" maxlength="6" class="form-control" id="inputPincode" required  />
+            </div>
+      
+            <div class="col-md-12">
+                <label for="inputPhone" class="form-label">Phone Number</label> &nbsp; <b><span id="messages" style="color: red;"></span></b>
+                <input type="tel" name="phone" maxlength="10" class="form-control" id="inputPhone" placeholder="Enter Phone Number" value=""  />
+            </div>
+            <input type="hidden" value="COD" name="payment_mode">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+
+    function mufun(){
+      var a = document.getElementById("inputPhone").value;
+      if(a==""){
+        document.getElementById("messages").innerHTML="*Please fill mobile number";
+        return false;
+      }
+      if(isNaN(a)){
+        document.getElementById("messages").innerHTML="*Enter only Numeric value";
+        return false;
+      }
+      if(a.length<10){
+        document.getElementById("messages").innerHTML="*Mobile Number must be 10 digit";
+        return false;
+      }
+      if(a.length>10){
+        document.getElementById("messages").innerHTML="*Mobile Number must be 10 digit";
+        return false;
+      }
+      if((a.charAt(0)!=9) && (a.charAt(0)!=8) && (a.charAt(0)!=7)) {
+        document.getElementById("messages").innerHTML="*Mobile Number must start with 9, 8 and 7";
+        return false;
+      }
+    }
+
+  </script>
+{% endblock %}

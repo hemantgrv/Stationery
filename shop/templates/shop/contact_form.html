@@ -1,0 +1,30 @@
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %} 
+Contact | ShopKart
+{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="static/css/contact.css' %}">
+{% endblock head %}
+
+{% block content %}
+
+<section class="bg-light py-4 my-5" style="min-height:600px;">
+<div class="container">
+  
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3">Contact Page</h4>
+            <hr style="border-color:#b8bfc2;">
+            {% include 'shop/inc/message.html' %}
+        </div>
+    </div>    
+    <div>
+      <p><i class="fa fa-home"></i> Stationero</p>
+      <p><i class="fa fa-envelope"></i> contact@stationero.com</p>
+      <p><i class="fa fa-phone"></i> + 91 9043017689</p>
+    </div>
+    <a href="https://formsubmit.co/el/nixeti">Fill Form Here</a>
+</section>
+{% endblock content %}

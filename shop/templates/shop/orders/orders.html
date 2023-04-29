@@ -1,0 +1,45 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+  MyOrders | ShopKart
+{% endblock title %}
+{% block content %}
+<section class="bg-light py-4 my-5" style="min-height:600px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-3">My Orders</h4>
+          <hr style="border-color:#b8bfc2;">
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order Date</th>
+                    <th>Tracking Number</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in orders %}
+                    
+                    <tr>
+                        <td>{{ item.created_at }}</td>
+                        <td>{{ item.tracking_no }}</td>
+                        <td>{{ item.total_price }}</td>
+                        <td>{{ item.status }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{% url 'orderview' item.tracking_no %}">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+      </div>
+    </div>
+  </section> 
+
+<script></script>
+{% endblock content %}
